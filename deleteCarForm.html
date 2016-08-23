@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Добавить новый автомобиль</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/myscript.js"></script>
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-default navbar-fixed-top ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Green Road</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <li><a class="menu-item-1" href="index.html">На главную</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END NAVIGATION -->
+
+    <!--MAIN SECTION -->
+    <h2 class="add-car-form">Удалить автомобиль из базы</h2>
+    <hr>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="car-list" class="control-label col-sm-4">Выберите автомобиль из списка:</label>
+            <div class="col-sm-5">
+                <select class="form-control" id="car-list" name="car-list">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4">Выбранный автомобиль:</label>
+            <span class="col-sm-5 label label-success selected-label" id="selected-car"></span>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-9">
+                <button class="btn btn-success center-block btn-delete" onclick="deleteCar()">Удалить</button>
+            </div>
+        </div>
+    </form>
+    <!-- END MAIN SECTION -->
+
+    <script>
+        $(document).ready(function () {
+
+            var length = localStorage.length - 1;
+            var option = '<option value=""></option>';
+            $("#car-list").append(option);
+            $('.btn-delete').addClass("disabled");
+
+            //Выборка всех автомобилей из localStorage 
+            for (var i in localStorage) {
+                if (i !== "LastCarId") {
+                    var car = loadCar(i);
+                    var option = '<option value="' + car.id + '">' + car.company + ' ' + car.title + '</option>';
+                    $("#car-list").append(option);
+                }
+            }
+
+            //Слежение за выбраным элементом
+            $("#car-list").change(function () {
+                var e = document.getElementById("car-list");
+                var option = e.options[e.selectedIndex].text;
+                $("#selected-car").html($("#selected-car").html().text = '');
+                if (option !== "") {
+                    $('.btn-delete').removeClass("disabled");
+                    $("#selected-car").html($("#selected-car").html() + " " + option);
+                } else {
+                    $('.btn-delete').addClass("disabled");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

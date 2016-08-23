@@ -1,0 +1,198 @@
+@font-face {
+    font-family: 'CinzelDecorative-Black';
+    src: url('../fonts/CinzelDecorative-Black.eot');
+    src: url('../fonts/CinzelDecorative-Black.woff2') format('woff2'), url('../fonts/CinzelDecorative-Black.woff') format('woff'), url('../fonts/CinzelDecorative-Black.ttf') format('truetype'), url('../fonts/CinzelDecorative-Black.svg#CinzelDecorative-Black') format('svg'), url('../fonts/CinzelDecorative-Black.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.img-car {
+    width: 400px;
+    height: 225px;
+}
+
+.car-block {
+    margin-bottom: 40px;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+body {
+    background: url('../img/bg.png') repeat, space;
+    background-image: url('../img/bg.png');
+}
+
+hr {
+    border-color: black;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.index {
+    margin-bottom: 30px;
+}
+
+header {
+    background-attachment: scroll;
+    background: url('../img/bg-image.jpg') no-repeat center center;
+    background-size: cover;
+    text-align: center;
+    height: 375px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.headertext {
+    padding-top: 0px;
+    padding-bottom: 100px;
+    font-family: 'Conv_Tabarra-Black';
+    font-size: 60px;
+    color: #fff;
+    text-shadow: #000 0 0 5px;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background: #449D44;
+}
+
+.navbar-fixed-top {
+    border-width: 0;
+}
+
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-brand {
+    font-family: 'CinzelDecorative-Black';
+    font-size: 26px;
+    padding-left: 40px;
+    text-shadow: #000 0 0 4px;
+}
+
+.menu-item-1 {
+    font-weight: bold;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #fff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #fff;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    background-color: transparent;
+    color: #fff;
+}
+
+.menu-item-1 {
+    margin-right: 20px;
+}
+
+@media screen and (max-width: 350px) {
+    .navbar-brand {
+        font-size: 20px;
+        padding-left: 20px;
+    }
+}
+
+.brief-title {
+    font-weight: bold;
+}
+
+.brief-text {
+    font-size: 16px;
+}
+
+.warning-label {
+    margin-bottom: 20px;
+}
+
+.button-details {
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0px;
+}
+
+.add-car-form {
+    text-align: center;
+    text-shadow: 1px 0px 0px;
+    margin-top: 75px;
+}
+
+.hint {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+hr {
+    border-color: black;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+button {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.btn-file {
+    margin-bottom: 10px;
+}
+
+.selected-label {
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.text-infoCar h1 {
+    font-size: 28px;
+}
+
+.img-car img {
+    margin-top: 15px;
+}
+
+.title {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 35px;
+    text-shadow: 2px 2px 3px rgba(15, 35, 191, 0.15);
+}
+
+.tableFont {
+    text-align: center;
+    font-size: 16px;
+    color: #100022;
+    text-shadow: 1px 1px 2px rgba(34, 51, 181, 0.15);
+}
+
+.bigImg {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

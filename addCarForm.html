@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Добавить новый автомобиль</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/myscript.js"></script>
+    <script src="js/validForm.js"></script>
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-default navbar-fixed-top ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Green Road</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <li><a class="menu-item-1" href="index.html">На главную</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END NAVIGATION -->
+
+    <!-- MAIN SECTION -->
+
+    <h2 class="add-car-form">Добавить автомобиль в базу</h2>
+    <hr>
+    <h5 class="hint"><b>Правила заполнения формы:</b><br><br> Все поля должны быть заполнены. Год выпуска - [1800 - 2020]. Габариты автомобиля - положительные числа. Изображение должно размещаться в каталоге сайта /img/cars</h5>
+    <form class="form-horizontal rf">
+        <div class="form-group">
+            <label for="company" class="control-label col-sm-2">Компания:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control rfield" id="company" name="company" placeholder="Nissan" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title" class="control-label col-sm-2">Название:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control rfield" id="title" name="title" placeholder="Skyline R33 GT-R" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="country" class="control-label col-sm-2">Страна:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control rfield" id="country" name="country" placeholder="Япония" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="year" class="control-label col-sm-2">Год выпуска:</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control rfield yearfield" id="year" name="year" placeholder="2013" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="type" class="control-label col-sm-2">Класс:</label>
+            <div class="col-sm-3">
+                <select class="form-control" id="type" name="type">
+                    <option value="0">Особо малый (A)</option>
+                    <option value="1">Малый (B)</option>
+                    <option value="2">Гольф (C)</option>
+                    <option value="3">Средний (D)</option>
+                    <option value="4">Бизнес (E)</option>
+                    <option value="5">Люкс (F)</option>
+                    <option value="6">Спорткар</option>
+                </select>
+            </div>
+            <label for="body-style" class="control-label col-sm-2">Тип кузова:</label>
+            <div class="col-sm-2">
+                <select class="form-control" id="body-style" name="body-style">
+                    <option>Седан</option>
+                    <option>Универсал</option>
+                    <option>Хетчбэк</option>
+                    <option>Купе</option>
+                    <option>Лимузин</option>
+                    <option>Микроавтобус</option>
+                    <option>Минивэн</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="engine" class="control-label col-sm-2">Двигатель:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control rfield" id="engine" name="engine" placeholder="2.6 L RB26DETT twin-turbo I6" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="transmission" class="control-label col-sm-2">Коробка передач:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control rfield" id="transmission" name="transmission" placeholder="5-speed manual" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="wheelbase" class="control-label col-sm-2">Колесная база, мм:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control rfield numfield" id="wheelbase" name="wheelbase" placeholder="2720" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="length" class="control-label col-sm-2">Длина, мм:</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control rfield numfield" id="length" name="length" placeholder="4675" />
+            </div>
+            <label for="width" class="control-label col-sm-2">Ширина, мм:</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control rfield numfield" id="width" name="width" placeholder="1780" />
+            </div>
+            <label for="height" class="control-label col-sm-2">Высота, мм:</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control rfield numfield" id="height" name="height" placeholder="1360" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="picture" class="control-label col-sm-2">Изображение:</label>
+
+            <div class="col-sm-7">
+                <label class="btn btn-default btn-file">
+                    Выбрать файл
+                    <input type="file" class="form-control rfield" accept="image/png,image/jpeg" id="picture" name="picture" style="display: none;" onchange="$('#upload-file-info').html($(this).val().split('\\').pop());">
+                </label>
+                <span class="label label-success selected-label" id="upload-file-info"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="control-label col-sm-2">Описание:</label>
+            <div class="col-sm-7">
+                <textarea class="form-control rfield" id="description" name="description" rows="6" placeholder="Машина оснащалась двигателем модели RB26DETT с увеличенным крутящим моментом, модификация V-spec была оборудована системой полного привода, которая называлась «Atesa E-TS professional», куда входил дифференциал повышенного трения LSD и система антиблокировки тормозов ABS. "></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-9">
+                <button class="btn btn-success center-block" onclick="getCar()">Добавить</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- END MAIN SECTION -->
+
+</body>
+
+</html>

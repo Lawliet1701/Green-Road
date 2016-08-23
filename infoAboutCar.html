@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Подробная информация</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/myscript.js"></script>
+
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-default navbar-fixed-top ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Green Road</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <li><a class="menu-item-1" href="addCarForm.html">Добавить автомобиль</a></li>
+                        <li><a class="menu-item-1" href="deleteCarForm.html">Удалить автомобиль</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END NAVIGATION -->
+
+    <!--  MAIN SECTION -->
+    <hr>
+    <div class="container text-infoCar">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="title"> </h1>
+                <div class="col-md-12 bigImg text-center" id="info-picture"> </div>
+                <table class="table table-striped tableFont">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-2">Cтрана</td>
+                            <td class="col-md-10" id="info-country"></td>
+                        </tr>
+                        <tr>
+                            <td>Год выпуска</td>
+                            <td id="info-year"></td>
+                        </tr>
+                        <tr>
+                            <td>Класс</td>
+                            <td id="info-type"></td>
+                        </tr>
+                        <tr>
+                            <td>Тип кузова</td>
+                            <td id="info-body-style"></td>
+                        </tr>
+                        <tr>
+                            <td>Двигатель</td>
+                            <td id="info-engine"></td>
+                        </tr>
+                        <tr>
+                            <td>Коробка передач</td>
+                            <td id="info-transmission"></td>
+                        </tr>
+                        <tr>
+                            <td>Колесная база</td>
+                            <td id="info-wheelbase"></td>
+                        </tr>
+                        <tr>
+                            <td>Длина</td>
+                            <td id="info-length"></td>
+                        </tr>
+                        <tr>
+                            <td>Ширина</td>
+                            <td id="info-width"></td>
+                        </tr>
+                        <tr>
+                            <td>Высота</td>
+                            <td id="info-height"></td>
+                        </tr>
+                        <tr>
+                            <td>Описание</td>
+                            <td id="info-description"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--  END MAIN SECTION -->
+
+    <script>
+        $(document).ready(function () {
+
+            var id = getParam("id");
+            var car = loadCar(id);
+
+            $(".title").html($(".title").html() + " " + car.company + " " + car.title);
+            $("#info-country").html($("#info-country").html() + " " + car.country);
+            $("#info-year").html($("#info-year").html() + " " + car.year);
+            $("#info-type").html($("#info-type").html() + " " + car.type);
+            $("#info-body-style").html($("#info-body-style").html() + " " + car.bodyStyle);
+            $("#info-engine").html($("#info-engine").html() + " " + car.engine);
+            $("#info-transmission").html($("#info-transmission").html() + " " + car.transmission);
+            $("#info-wheelbase").html($("#info-wheelbase").html() + " " + car.wheelbase + " мм");
+            $("#info-length").html($("#info-length").html() + " " + car.length + " мм");
+            $("#info-width").html($("#info-width").html() + " " + car.width + " мм");
+            $("#info-height").html($("#info-height").html() + " " + car.height + " мм");
+            $("#info-description").html($("#info-description").html() + " " + car.description);
+            $("#info-picture").html($("#info-picture").html() + " " + '<img src=\"' + car.picture + '\" class=\"img-responsive img-thumbnail\" alt=\"\">');
+
+        });
+
+        function getParam(paramName) {
+
+            var params = location.search.substring(1).split("&");
+
+            for (var i = 0; i < params.length; i++) {
+                if (params[i].split("=").length > 1) result = params[i].split("=")[1];
+                return result;
+            }
+            return "";
+        }
+    </script>
+</body>
+
+</html>
