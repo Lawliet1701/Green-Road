@@ -42,7 +42,7 @@ function getCar() {
 
     car.picture = "img/cars/" + file;
     saveCar(car);
-    
+
     alert("Автомобиль добавлен!");
 }
 
@@ -63,7 +63,7 @@ function getHtmlCarBlocks(count) {
     for (var i = 0; i < count; i++) {
 
         var car = null;
-        
+
         while (car === null) {
             onDisplay++;
             car = loadCar(onDisplay);
@@ -123,6 +123,18 @@ function printNoElements() {
     $("#LoadDiv").html($("#LoadDiv").html() + " " + data);
 }
 
+//Получение id автомобиля из адресной строки
+function getParam(paramName) {
+
+    var params = location.search.substring(1).split("&");
+
+    for (var i = 0; i < params.length; i++) {
+        if (params[i].split("=").length > 1) result = params[i].split("=")[1];
+        return result;
+    }
+    return "";
+}
+
 var thisPageNum = 1;
 var thisWork = 1;
 var leftRows = localStorage.length - 1;
@@ -130,27 +142,80 @@ var onDisplay = 0;
 
 $(document).ready(function () {
 
-    var scrH = $(window).height();
-    var scrHP = $("#container").height();
+    if (window.location.pathname.split('/')[2] === "index.html") {
+        var scrH = $(window).height();
+        var scrHP = $("#container").height();
 
-    if (localStorage.length === 0) {
-        printNoElements();
-    } else {
-        for (var i = 0; i < 2; i++) {
-            getNextRow();
+        if (localStorage.length === 0) {
+            printNoElements();
+        } else {
+            for (var i = 0; i < 2; i++) {
+                getNextRow();
+            }
         }
+
+        // Проверка состояния прокрутки
+        $(window).scroll(function () {
+            var scro = $(this).scrollTop();
+            var scrHP = $("#container").height();
+            var scrH2 = 0;
+            scrH2 = scrH + scro;
+            var leftH = scrHP - scrH2;
+
+            if (leftH < 300) {
+                getNextRow();
+            }
+        });
+    } 
+    
+    else if (window.location.pathname.split('/')[2] === "infoAboutCar.html") {
+
+        var id = getParam("id");
+        var car = loadCar(id);
+
+        $(".title").html($(".title").html() + " " + car.company + " " + car.title);
+        $("#info-country").html($("#info-country").html() + " " + car.country);
+        $("#info-year").html($("#info-year").html() + " " + car.year);
+        $("#info-type").html($("#info-type").html() + " " + car.type);
+        $("#info-body-style").html($("#info-body-style").html() + " " + car.bodyStyle);
+        $("#info-engine").html($("#info-engine").html() + " " + car.engine);
+        $("#info-transmission").html($("#info-transmission").html() + " " + car.transmission);
+        $("#info-wheelbase").html($("#info-wheelbase").html() + " " + car.wheelbase + " мм");
+        $("#info-length").html($("#info-length").html() + " " + car.length + " мм");
+        $("#info-width").html($("#info-width").html() + " " + car.width + " мм");
+        $("#info-height").html($("#info-height").html() + " " + car.height + " мм");
+        $("#info-description").html($("#info-description").html() + " " + car.description);
+        $("#info-picture").html($("#info-picture").html() + " " + '<img src=\"' + car.picture + '\" class=\"img-responsive img-thumbnail\" alt=\"\">');
+    } 
+    
+    else if (window.location.pathname.split('/')[2] === "deleteCarForm.html") {
+        
+        var length = localStorage.length - 1;
+        var option = '<option value=""></option>';
+        $("#car-list").append(option);
+        $('.btn-delete').addClass("disabled");
+
+        //Выборка всех автомобилей из localStorage 
+        for (var i in localStorage) {
+            if (i !== "LastCarId") {
+                var car = loadCar(i);
+                var option = '<option value="' + car.id + '">' + car.company + ' ' + car.title + '</option>';
+                $("#car-list").append(option);
+            }
+        }
+
+        //Слежение за выбраным элементом
+        $("#car-list").change(function () {
+            var e = document.getElementById("car-list");
+            var option = e.options[e.selectedIndex].text;
+            $("#selected-car").html($("#selected-car").html().text = '');
+            if (option !== "") {
+                $('.btn-delete').removeClass("disabled");
+                $("#selected-car").html($("#selected-car").html() + " " + option);
+            } else {
+                $('.btn-delete').addClass("disabled");
+            }
+        });
     }
 
-    // Проверка состояния прокрутки
-    $(window).scroll(function () {
-        var scro = $(this).scrollTop();
-        var scrHP = $("#container").height();
-        var scrH2 = 0;
-        scrH2 = scrH + scro;
-        var leftH = scrHP - scrH2;
-
-        if (leftH < 300) {
-            getNextRow();
-        }
-    });
 });

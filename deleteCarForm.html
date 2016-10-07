@@ -58,38 +58,6 @@
     </form>
     <!-- END MAIN SECTION -->
 
-    <script>
-        $(document).ready(function () {
-
-            var length = localStorage.length - 1;
-            var option = '<option value=""></option>';
-            $("#car-list").append(option);
-            $('.btn-delete').addClass("disabled");
-
-            //Выборка всех автомобилей из localStorage 
-            for (var i in localStorage) {
-                if (i !== "LastCarId") {
-                    var car = loadCar(i);
-                    var option = '<option value="' + car.id + '">' + car.company + ' ' + car.title + '</option>';
-                    $("#car-list").append(option);
-                }
-            }
-
-            //Слежение за выбраным элементом
-            $("#car-list").change(function () {
-                var e = document.getElementById("car-list");
-                var option = e.options[e.selectedIndex].text;
-                $("#selected-car").html($("#selected-car").html().text = '');
-                if (option !== "") {
-                    $('.btn-delete').removeClass("disabled");
-                    $("#selected-car").html($("#selected-car").html() + " " + option);
-                } else {
-                    $('.btn-delete').addClass("disabled");
-                }
-            });
-        });
-    </script>
-
 </body>
 
 </html>

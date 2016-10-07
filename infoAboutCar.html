@@ -97,39 +97,6 @@
     </div>
     <!--  END MAIN SECTION -->
 
-    <script>
-        $(document).ready(function () {
-
-            var id = getParam("id");
-            var car = loadCar(id);
-
-            $(".title").html($(".title").html() + " " + car.company + " " + car.title);
-            $("#info-country").html($("#info-country").html() + " " + car.country);
-            $("#info-year").html($("#info-year").html() + " " + car.year);
-            $("#info-type").html($("#info-type").html() + " " + car.type);
-            $("#info-body-style").html($("#info-body-style").html() + " " + car.bodyStyle);
-            $("#info-engine").html($("#info-engine").html() + " " + car.engine);
-            $("#info-transmission").html($("#info-transmission").html() + " " + car.transmission);
-            $("#info-wheelbase").html($("#info-wheelbase").html() + " " + car.wheelbase + " мм");
-            $("#info-length").html($("#info-length").html() + " " + car.length + " мм");
-            $("#info-width").html($("#info-width").html() + " " + car.width + " мм");
-            $("#info-height").html($("#info-height").html() + " " + car.height + " мм");
-            $("#info-description").html($("#info-description").html() + " " + car.description);
-            $("#info-picture").html($("#info-picture").html() + " " + '<img src=\"' + car.picture + '\" class=\"img-responsive img-thumbnail\" alt=\"\">');
-
-        });
-
-        function getParam(paramName) {
-
-            var params = location.search.substring(1).split("&");
-
-            for (var i = 0; i < params.length; i++) {
-                if (params[i].split("=").length > 1) result = params[i].split("=")[1];
-                return result;
-            }
-            return "";
-        }
-    </script>
 </body>
 
 </html>
