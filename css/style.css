@@ -196,3 +196,11 @@ button {
     margin-top: 10px;
     margin-bottom: 20px;
 }
+
+.valid-input {
+    border: green 2px solid;
+}
+
+.invalid-input {
+    border: red 2px solid;
+}

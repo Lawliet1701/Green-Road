@@ -16,10 +16,12 @@
                 form.find('.rfield').each(function () {
                     if ($(this).val() != '') {
                         // Если поле не пустое - удаляем класс-указание
-                        $(this).removeClass('empty_field');
+                        $(this).removeClass('empty_field invalid-input');
+                        $(this).addClass('valid-input');
                     } else {
                         // Если поле пустое - добавляем класс-указание
-                        $(this).addClass('empty_field');
+                        $(this).removeClass('valid-input');
+                        $(this).addClass('empty_field invalid-input');
                     }
                 });
 
@@ -27,10 +29,12 @@
                     var num = $(this).val();
                     if (isNumeric(num) & num > 0) {
                         // Если значение - положительное число - удаляем класс-указание
-                        $(this).removeClass('nan_field');
+                        $(this).removeClass('nan_field invalid-input');
+                        $(this).addClass('valid-input');
                     } else {
                         // Если значение - не положительное число - добавляем класс-указание
-                        $(this).addClass('nan_field');
+                        $(this).removeClass('valid-input');
+                        $(this).addClass('nan_field invalid-input');
                     }
                 });
 
@@ -38,10 +42,12 @@
                     var year = $(this).val();
                     if (isNumeric(year) && year >= 1800 && year <= 2020) {
                         // Если значение в указанных пределах - удаляем класс-указание
-                        $(this).removeClass('nyear_field');
+                        $(this).removeClass('nyear_field invalid-input');
+                        $(this).addClass('valid-input');
                     } else {
                         // Если значение вне указанных пределов - добавляем класс-указание
-                        $(this).addClass('nyear_field');
+                        $(this).removeClass('valid-input');
+                        $(this).addClass('nyear_field invalid-input');
                     }
                 });
             }
