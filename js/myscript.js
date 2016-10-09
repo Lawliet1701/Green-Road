@@ -43,7 +43,8 @@ function getCar() {
     car.picture = "img/cars/" + file;
     saveCar(car);
 
-    alert("Автомобиль добавлен!");
+    showPopupMessage();
+
 }
 
 //Удаление автомобиля из localStorage
@@ -51,7 +52,19 @@ function deleteCar() {
     var e = document.getElementById("car-list");
     var id = e.options[e.selectedIndex].value;
     localStorage.removeItem(id);
-    alert("Автомобиль удален!");
+    showPopupMessage();
+}
+
+function showPopupMessage() {
+    $("#popup_add").show();
+    $('.overlay').show();
+}
+
+function hidePopupMessage() {
+    $('.popup .close-button, .overlay').click(function () {
+        $('.overlay, .popup').hide();
+        window.location.href = window.location.href;
+    });
 }
 
 //Создание блоков с краткой информацией о автомобиле
@@ -111,15 +124,13 @@ function getNextRow() {
 
             thisPageNum = thisPageNum + 1;
             thisWork = 1;
-
         }
-
     }
 }
 
 //Вывод сообщения об отсутствии автомобилей в localStorage
 function printNoElements() {
-    var data = '<h3 class="warning-label text-center"> <span class=\"label label-success\">Записей нет!<\/span> <\/h3>';
+    var data = '<h3 class="warning-label text-center"> <span class=\"label label-success\">Записей нет! Добавьте новый автомобиль!<\/span> <\/h3>';
     $("#LoadDiv").html($("#LoadDiv").html() + " " + data);
 }
 
@@ -142,11 +153,14 @@ var onDisplay = 0;
 
 $(document).ready(function () {
 
-    if (window.location.pathname.split('/')[2] === "index.html") {
+    var currentFullPath = window.location.pathname.split('/');
+    var currentPage = currentFullPath[currentFullPath.length - 1];
+
+    if (currentPage === "index.html") {
         var scrH = $(window).height();
         var scrHP = $("#container").height();
 
-        if (localStorage.length === 0) {
+        if (localStorage.length === 1) {
             printNoElements();
         } else {
             for (var i = 0; i < 2; i++) {
@@ -166,9 +180,7 @@ $(document).ready(function () {
                 getNextRow();
             }
         });
-    } 
-    
-    else if (window.location.pathname.split('/')[2] === "infoAboutCar.html") {
+    } else if (currentPage === "infoAboutCar.html") {
 
         var id = getParam("id");
         var car = loadCar(id);
@@ -186,14 +198,12 @@ $(document).ready(function () {
         $("#info-height").html($("#info-height").html() + " " + car.height + " мм");
         $("#info-description").html($("#info-description").html() + " " + car.description);
         $("#info-picture").html($("#info-picture").html() + " " + '<img src=\"' + car.picture + '\" class=\"img-responsive img-thumbnail\" alt=\"\">');
-    } 
-    
-    else if (window.location.pathname.split('/')[2] === "deleteCarForm.html") {
-        
+    } else if (currentPage === "deleteCarForm.html") {
+
         var length = localStorage.length - 1;
         var option = '<option value=""></option>';
         $("#car-list").append(option);
-        $('.btn-delete').addClass("disabled");
+        $('.subm-button').addClass("subm-button-disabled");
 
         //Выборка всех автомобилей из localStorage 
         for (var i in localStorage) {
@@ -203,19 +213,24 @@ $(document).ready(function () {
                 $("#car-list").append(option);
             }
         }
-
-        //Слежение за выбраным элементом
-        $("#car-list").change(function () {
-            var e = document.getElementById("car-list");
-            var option = e.options[e.selectedIndex].text;
-            $("#selected-car").html($("#selected-car").html().text = '');
-            if (option !== "") {
-                $('.btn-delete').removeClass("disabled");
-                $("#selected-car").html($("#selected-car").html() + " " + option);
-            } else {
-                $('.btn-delete').addClass("disabled");
-            }
-        });
+    } else if (currentPage === "addCarForm.html") {
+        hidePopupMessage();
     }
 
 });
+
+// Отображение выбранного элемента списка при удалении автомобиля
+function changeSelectedCarHandler(event) {
+
+    var e = document.getElementById("car-list");
+    var option = e.options[e.selectedIndex].text;
+    $("#selected-car").html($("#selected-car").html().text = '');
+    if (option !== "") {
+        $('.subm-button').removeClass("subm-button-disabled");
+        $("#selected-car").html($("#selected-car").html() + " " + option);
+    } else {
+        $('.subm-button').addClass("subm-button-disabled");
+    }
+
+    hidePopupMessage();
+}

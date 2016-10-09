@@ -38,25 +38,30 @@
     <!--MAIN SECTION -->
     <h2 class="add-car-form">Удалить автомобиль из базы</h2>
     <hr>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="car-list" class="control-label col-sm-4">Выберите автомобиль из списка:</label>
-            <div class="col-sm-5">
-                <select class="form-control" id="car-list" name="car-list">
+    <div class="container">
+        <div class="row">
+            <label for="car-list" class="selected-label col-md-3 col-sm-3 col-xs-12">Выберите автомобиль:</label>
+            <div class="selected-list col-md-4 col-sm-4 col-xs-12">
+                <select class="form-control" id="car-list" name="car-list" onchange="changeSelectedCarHandler(event);">
                 </select>
             </div>
+            <div class="selected-car col-md-4 col-sm-4 col-xs-12" id="selected-car"></div>
         </div>
+
         <div class="form-group">
-            <label class="control-label col-sm-4">Выбранный автомобиль:</label>
-            <span class="col-sm-5 label label-success selected-label" id="selected-car"></span>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-9">
-                <button class="btn btn-success center-block btn-delete" onclick="deleteCar()">Удалить</button>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <a class="subm-button" onclick="deleteCar()">Удалить</a>
             </div>
         </div>
-    </form>
+    </div>
     <!-- END MAIN SECTION -->
+
+    <!-- HIDDEN POPUP SECTION -->
+    <div class="overlay"></div>
+    <div class="popup" id="popup_add">
+        <span class="close-button">х</span> Автомобиль удален
+    </div>
+    <!-- END HIDDEN POPUP SECTION -->
 
 </body>
 

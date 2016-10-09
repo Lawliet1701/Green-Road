@@ -5,7 +5,7 @@
         $('.rf').each(function () {
 
             var form = $(this),
-                btn = form.find('.btn-success');
+                btn = form.find('.subm-button');
 
             form.find('.rfield').addClass('empty_field');
             form.find('.numfield').addClass('nan_field');
@@ -66,13 +66,13 @@
                 var sizeNyear = form.find('.year_field').size();
                 // Меняем доступность кнопки
                 if ((+sizeEmpty + sizeNan + sizeNyear) > 0) {
-                    if (btn.hasClass('disabled')) {
+                    if (btn.hasClass('subm-button-disabled')) {
                         return false
                     } else {
-                        btn.addClass('disabled')
+                        btn.addClass('subm-button-disabled')
                     }
                 } else {
-                    btn.removeClass('disabled')
+                    btn.removeClass('subm-button-disabled')
                 }
             }, 500);
 
