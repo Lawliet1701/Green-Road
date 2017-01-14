@@ -22,25 +22,20 @@ function getCar() {
 
     var car = {};
     car.id = +getLastId() + 1;
-    car.company = document.getElementById("company").value;
-    car.title = document.getElementById("title").value;
-    car.year = document.getElementById("year").value;
-    car.country = document.getElementById("country").value;
-    var type = document.getElementById("type");
-    car.type = type.options[type.selectedIndex].text;
-    var bodyStyle = document.getElementById("body-style");
-    car.bodyStyle = bodyStyle.options[bodyStyle.selectedIndex].text;
-    car.engine = document.getElementById("engine").value;
-    car.transmission = document.getElementById("transmission").value;
-    car.wheelbase = document.getElementById("wheelbase").value;
-    car.length = document.getElementById("length").value;
-    car.width = document.getElementById("width").value;
-    car.height = document.getElementById("height").value;
-    car.description = document.getElementById("description").value;
-
-    var file = document.getElementById("picture").files[0].name;
-
-    car.picture = "img/cars/" + file;
+    car.company = $("#company").val();
+    car.title = $("#title").val();
+    car.year = $("#year").val();
+    car.country = $("#country").val();
+    car.type = $("#type :selected").text();
+    car.bodyStyle = $("#type :selected").text();
+    car.engine = $("#engine").val();
+    car.transmission = $("#transmission").val();
+    car.wheelbase = $("#wheelbase").val();
+    car.length = $("#length").val();
+    car.width = $("#width").val();
+    car.height = $("#height").val();
+    car.description = $("#description").val();
+    car.picture = "img/cars/" + $('#upload-file-info').text();;
     saveCar(car);
 
     showPopupMessage();
@@ -49,15 +44,14 @@ function getCar() {
 
 //Удаление автомобиля из localStorage
 function deleteCar() {
-    var e = document.getElementById("car-list");
-    var id = e.options[e.selectedIndex].value;
+    var id = $("#car-list :selected").val();
     localStorage.removeItem(id);
     showPopupMessage();
 }
 
 function showPopupMessage() {
     $("#popup_add").show();
-    $('.overlay').show();
+    $(".overlay").show();
 }
 
 function hidePopupMessage() {
@@ -70,40 +64,40 @@ function hidePopupMessage() {
 //Создание блоков с краткой информацией о автомобиле
 function getHtmlCarBlocks(count) {
 
-    var html = [];
-    html.push('<div class=\"row text-center\"> ');
+    var data = [];
+    data.push('<div class=\"row text-center\"> ');
 
     for (var i = 0; i < count; i++) {
 
         var car = null;
-
+        
         while (car === null) {
             onDisplay++;
             car = loadCar(onDisplay);
         }
 
-        html.push('<div id=\"');
-        html.push(car.id);
-        html.push('\" class=\"col-md-4 col-sm-4 car-block\">\n<img src=\"');
-        html.push(car.picture);
-        html.push('\" class=\"img-responsive img-car center-block \" alt=\"\">\n <div>\n<h4 class=\"brief-title\">');
-        html.push(car.company);
-        html.push(' ');
-        html.push(car.title);
-        html.push('<\/h4> \n <div class=\"brief-text\">');
-        html.push(car.country);
-        html.push(', ');
-        html.push(car.year);
-        html.push('<\/div>\n<div class=\"brief-text\">');
-        html.push('Класс: ');
-        html.push(car.type);
-        html.push('<\/div>\n  <a href=\"infoAboutCar.html?id=');
-        html.push(car.id);
-        html.push('\" class=\"btn btn-success center-block button-details\">Подробнее<\/a> \n <\/div>\n<\/div>');
+        data.push('<div id=\"');
+        data.push(car.id);
+        data.push('\" class=\"col-md-4 col-sm-4 car-block\">\n<img src=\"');
+        data.push(car.picture);
+        data.push('\" class=\"img-responsive img-car center-block \" alt=\"\">\n <div>\n<h4 class=\"brief-title\">');
+        data.push(car.company);
+        data.push(' ');
+        data.push(car.title);
+        data.push('<\/h4> \n <div class=\"brief-text\">');
+        data.push(car.country);
+        data.push(', ');
+        data.push(car.year);
+        data.push('<\/div>\n<div class=\"brief-text\">');
+        data.push('Класс: ');
+        data.push(car.type);
+        data.push('<\/div>\n  <a href=\"infoAboutCar.html?id=');
+        data.push(car.id);
+        data.push('\" class=\"btn btn-success center-block button-details\">Подробнее<\/a> \n <\/div>\n<\/div>');
 
     }
-    html.push('<\/div>');
-    return html.join("");
+    data.push('<\/div>');
+    return data.join("");
 }
 
 function getNextRow() {
@@ -118,7 +112,7 @@ function getNextRow() {
 
             var data = getHtmlCarBlocks(count);
 
-            $("#LoadDiv").html($("#LoadDiv").html() + " " + data);
+            $("#LoadDiv").append(" " + data);
 
             leftRows -= count;
 
@@ -131,7 +125,7 @@ function getNextRow() {
 //Вывод сообщения об отсутствии автомобилей в localStorage
 function printNoElements() {
     var data = '<h3 class="warning-label text-center"> <span class=\"label label-success\">Записей нет! Добавьте новый автомобиль!<\/span> <\/h3>';
-    $("#LoadDiv").html($("#LoadDiv").html() + " " + data);
+    $("#LoadDiv").append(" " + data);
 }
 
 //Получение id автомобиля из адресной строки
@@ -185,25 +179,25 @@ $(document).ready(function () {
         var id = getParam("id");
         var car = loadCar(id);
 
-        $(".title").html($(".title").html() + " " + car.company + " " + car.title);
-        $("#info-country").html($("#info-country").html() + " " + car.country);
-        $("#info-year").html($("#info-year").html() + " " + car.year);
-        $("#info-type").html($("#info-type").html() + " " + car.type);
-        $("#info-body-style").html($("#info-body-style").html() + " " + car.bodyStyle);
-        $("#info-engine").html($("#info-engine").html() + " " + car.engine);
-        $("#info-transmission").html($("#info-transmission").html() + " " + car.transmission);
-        $("#info-wheelbase").html($("#info-wheelbase").html() + " " + car.wheelbase + " мм");
-        $("#info-length").html($("#info-length").html() + " " + car.length + " мм");
-        $("#info-width").html($("#info-width").html() + " " + car.width + " мм");
-        $("#info-height").html($("#info-height").html() + " " + car.height + " мм");
-        $("#info-description").html($("#info-description").html() + " " + car.description);
-        $("#info-picture").html($("#info-picture").html() + " " + '<img src=\"' + car.picture + '\" class=\"img-responsive img-thumbnail\" alt=\"\">');
+        $(".title").append(" " + car.company + " " + car.title);
+        $("#info-country").append(" " + car.country);
+        $("#info-year").append(" " + car.year);
+        $("#info-type").append(" " + car.type);
+        $("#info-body-style").append(" " + car.bodyStyle);
+        $("#info-engine").append(" " + car.engine);
+        $("#info-transmission").append(" " + car.transmission);
+        $("#info-wheelbase").append(" " + car.wheelbase + " мм");
+        $("#info-length").append(" " + car.length + " мм");
+        $("#info-width").append(" " + car.width + " мм");
+        $("#info-height").append(" " + car.height + " мм");
+        $("#info-description").append(" " + car.description);
+        $("#info-picture").append(" " + '<img src=\"' + car.picture + '\" class=\"img-responsive img-thumbnail\" alt=\"\">');
     } else if (currentPage === "deleteCarForm.html") {
 
         var length = localStorage.length - 1;
         var option = '<option value=""></option>';
         $("#car-list").append(option);
-        $('.subm-button').addClass("subm-button-disabled");
+        $(".subm-button").addClass("subm-button-disabled");
 
         //Выборка всех автомобилей из localStorage 
         for (var i in localStorage) {
@@ -222,12 +216,10 @@ $(document).ready(function () {
 // Отображение выбранного элемента списка при удалении автомобиля
 function changeSelectedCarHandler(event) {
 
-    var e = document.getElementById("car-list");
-    var option = e.options[e.selectedIndex].text;
-    $("#selected-car").html($("#selected-car").html().text = '');
+    var option = $("#car-list :selected").text();
     if (option !== "") {
         $('.subm-button').removeClass("subm-button-disabled");
-        $("#selected-car").html($("#selected-car").html() + " " + option);
+        $("#selected-car").append(" " + option);
     } else {
         $('.subm-button').addClass("subm-button-disabled");
     }
